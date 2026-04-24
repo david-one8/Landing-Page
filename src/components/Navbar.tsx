@@ -132,75 +132,74 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
-
-        {/* Mobile slide-in */}
-        <div
-          className={`md:hidden fixed inset-0 z-[80] transition ${
-            open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
-          }`}
-          aria-hidden={!open}
-        >
-          <div
-            onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-ink/45 backdrop-blur-sm"
-          />
-          <aside
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-            className={`absolute inset-y-0 right-0 flex h-full w-full max-w-none flex-col bg-white shadow-2xl transform transition-transform duration-300 ${
-              open ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="flex min-h-16 items-center justify-between border-b border-gray-100 px-5">
-              <span className="text-xl font-bold text-ink">Menu</span>
-              <button
-                aria-label="Close menu"
-                onClick={() => setOpen(false)}
-                className="flex min-h-[48px] min-w-[48px] items-center justify-center rounded-full text-ink transition-colors hover:bg-soil-pale"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="flex flex-1 flex-col justify-between px-6 pb-8 pt-8">
-              <ul className="flex flex-col gap-3">
-                {links.map((l) => (
-                  <li key={l.href}>
-                    <a
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className="flex min-h-[56px] items-center rounded-2xl border border-transparent px-4 text-lg font-semibold text-ink transition-colors hover:border-soil/10 hover:bg-soil-pale"
-                    >
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="space-y-4 border-t border-gray-100 pt-6">
-                <button
-                  onClick={() => {
-                    toggleLang();
-                    setOpen(false);
-                  }}
-                  className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl border border-soil/20 bg-soil-pale px-4 text-sm font-semibold text-soil"
-                >
-                  <Languages size={18} />
-                  {lang === "en" ? "Switch to Hindi" : "Switch to English"}
-                </button>
-                <a
-                  href="#contact"
-                  onClick={() => setOpen(false)}
-                  className="flex min-h-[56px] w-full items-center justify-center rounded-2xl bg-soil px-4 text-center text-lg font-semibold text-white shadow-lg shadow-soil/20"
-                >
-                  {t.nav.cta}
-                </a>
-              </div>
-            </div>
-          </aside>
-        </div>
       </header>
+      {/* Mobile navigation layer */}
+      <div
+        className={`md:hidden fixed inset-0 z-[80] transition ${
+          open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!open}
+      >
+        <div
+          onClick={() => setOpen(false)}
+          className="absolute inset-0 bg-ink/45 backdrop-blur-sm"
+        />
+        <aside
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          className={`absolute inset-0 flex h-full w-full flex-col bg-white shadow-2xl transform transition-transform duration-300 ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex min-h-16 items-center justify-between border-b border-gray-100 px-5">
+            <span className="text-xl font-bold text-ink">Menu</span>
+            <button
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              className="flex min-h-[48px] min-w-[48px] items-center justify-center rounded-full text-ink transition-colors hover:bg-soil-pale"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="flex flex-1 flex-col justify-between px-6 pb-8 pt-8">
+            <ul className="flex flex-col gap-3">
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="flex min-h-[56px] items-center rounded-2xl border border-transparent px-4 text-lg font-semibold text-ink transition-colors hover:border-soil/10 hover:bg-soil-pale"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="space-y-4 border-t border-gray-100 pt-6">
+              <button
+                onClick={() => {
+                  toggleLang();
+                  setOpen(false);
+                }}
+                className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl border border-soil/20 bg-soil-pale px-4 text-sm font-semibold text-soil"
+              >
+                <Languages size={18} />
+                {lang === "en" ? "Switch to Hindi" : "Switch to English"}
+              </button>
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="flex min-h-[56px] w-full items-center justify-center rounded-2xl bg-soil px-4 text-center text-lg font-semibold text-white shadow-lg shadow-soil/20"
+              >
+                {t.nav.cta}
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
     </>
   );
 }
