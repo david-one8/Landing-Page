@@ -73,7 +73,7 @@ function Reveal({ children }: { children: ReactNode }) {
 
 function Index() {
   return (
-    <div className="bg-warm scroll-smooth">
+    <div className="bg-warm">
       <Navbar />
       <main>
         <Reveal>
